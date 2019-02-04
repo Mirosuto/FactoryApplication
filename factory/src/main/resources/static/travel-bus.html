@@ -1,0 +1,53 @@
+<div>
+    <h3>Travel Bus</h3>
+    <form class="simple-form">
+
+        <label for="marka">Name:</label>
+        <input ng-model="vehiclea.qname" id="marka" name="marka" type="text" placeholder="Marka" required> <br>
+
+        <label for="boja"> Color:</label>
+        <input ng-model="vehiclea.qcolor" id="boja"  name="boja" type="text" placeholder="Boja" required> <br>
+
+        <label for="numberOfSeats">Number Of Seats:</label>
+        <input ng-model="vehiclea.qnumberOfSeats" id="numberOfSeats"  name="numberOfSeats" type="number" placeholder="Broj Sedista" required> <br>
+
+        <label for="numberOfStanding">Number Of Places To Stand:</label>
+        <input ng-model="vehiclea.qnumberofPlacesToStand" id="numberOfStanding"  name="numberOfStanding" type="number" placeholder="Broj mesta za stojanje" required> <br>
+
+        <label for="trunkCapacity"> Trunk Capacity:</label>
+        <input ng-model="vehiclea.qtrunkCapacity" id="trunkCapacity"  name="trunkCapacity" type="number" placeholder="Nosivost tereta" required>
+
+        <input class="submitButton"  type="submit" value="Create!" ng-click="saveTravel(vehiclea)">
+
+    </form>
+
+    <table style="width:98.5%">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Number Of Seats</th>
+        <th>Number Of Places To Stand</th>
+        <th>Trunk Capacity</th>
+
+        <tr ng-repeat="lista in listOfVehicles">
+            <td>
+                {{lista.parking_id}}
+            </td>
+            <td>
+                {{lista.marka}}
+            </td>
+            <td>
+                {{lista.boja}}
+            </td>
+            <td>
+                {{lista.numberOfSeats}}
+            </td>
+            <td>
+                {{lista.numberOfStanding}}
+            </td>
+            <td>
+                {{lista.trunkCapacity}}
+            </td>
+        </tr>
+    </table>
+</div>

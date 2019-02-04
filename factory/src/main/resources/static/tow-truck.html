@@ -1,0 +1,47 @@
+<div>
+    <form class="simple-form">
+
+        <h3>Tow Truck</h3>
+
+        <label for="marka">Name:</label>
+        <input ng-model="vehiclea.qname" id="marka" name="marka" type="text" placeholder="Marka" required> <br>
+
+        <label for="boja">Color:</label>
+        <input ng-model="vehiclea.qcolor" id="boja" name="boja" type="text" placeholder="Boja" required> <br>
+
+        <label for="numberOfAxles">Number Of Axels:</label>
+        <input ng-model="vehiclea.qaxels" id="numberOfAxles" name="numberOfAxles" type="number" placeholder="Broj osovina" required> <br>
+
+        <label for="towingCapacity">Towing Capacity:</label>
+        <input ng-model="vehiclea.qtowingCapacity" id="towingCapacity" name="towingCapacity" type="number" placeholder="Vucna snaga" required> <br>
+
+        <input class="submitButton"  type="submit" value="Create!" ng-click="saveTow(vehiclea)">
+
+    </form>
+
+    <table style="width:98.5%">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Number Of Axels</th>
+        <th>Towing Capacity</th>
+
+        <tr ng-repeat="lista in listOfVehicles">
+            <td>
+                {{lista.parking_id}}
+            </td>
+            <td>
+                {{lista.marka}}
+            </td>
+            <td>
+                {{lista.boja}}
+            </td>
+            <td>
+                {{lista.numberOfAxles}}
+            </td>
+            <td>
+                {{lista.towingCapacity}}
+            </td>
+        </tr>
+    </table>
+</div>

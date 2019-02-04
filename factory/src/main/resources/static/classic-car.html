@@ -1,0 +1,53 @@
+<div>
+    <form class="simple-form">
+
+            <h3>Classic Car</h3>
+
+            <label for="marka">Name:</label>
+            <input ng-model="vehiclea.qname" id="marka"  name="marka" type="text" placeholder="Marka" required> <br>
+
+            <label for="boja">Color:</label>
+            <input ng-model="vehiclea.qcolor" id="boja"  name="boja" type="text" placeholder="Boja" required> <br>
+
+            <label for="seatNbr">Number Of Seats:</label>
+            <input ng-model="vehiclea.qnbrOfSeats" id="seatNbr"  name="seatNbr" type="number" placeholder="Broj Sedista" required> <br>
+
+            <label for="equipment">Equipment:</label>
+            <input ng-model="vehiclea.qequipment" id="equipment"  name="equipment" type="text" placeholder="Oprema" required> <br>
+
+            <label for="roofCarryCapacity">Roof Carry capacity:</label>
+            <input ng-model="vehiclea.qroofCarryCapacity" id="roofCarryCapacity" name="roofCarryCapacity" type="number" placeholder="Nosivost krova" required>
+
+            <input class="submitButton"  type="submit" value="Create!" ng-click="saveClassic(vehiclea)">
+
+    </form>
+    <table  style="width:98.5%">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Number Of Seats</th>
+        <th>Equipment</th>
+        <th>Roof Carry capacity</th>
+
+        <tr ng-repeat="lista in listOfVehicles">
+            <td>
+                {{lista.parking_id}}
+            </td>
+            <td>
+                {{lista.marka}}
+            </td>
+            <td>
+                {{lista.boja}}
+            </td>
+            <td>
+                {{lista.seatNbr}}
+            </td>
+            <td>
+                {{lista.equipment}}
+            </td>
+            <td>
+                {{lista.roofCarryCapacity}}
+            </td>
+        </tr>
+    </table>
+</div>

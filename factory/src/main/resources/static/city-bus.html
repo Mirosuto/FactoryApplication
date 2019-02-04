@@ -1,0 +1,58 @@
+<div>
+
+    <form class="simple-form">
+
+            <h3>City Bus</h3>
+            <label for="name">Name: </label>
+            <input ng-model="vehiclea.qname" name="name" id="name" type="text" placeholder="Marka" required> <br>
+
+            <label for="color">Color: </label>
+            <input ng-model="vehiclea.qcolor" name="color" id="color" type="text" placeholder="Boja" required> <br>
+
+            <label for="numberOfSeats">Number Of Seats: </label>
+            <input ng-model="vehiclea.qnumberOfSeats" id="numberOfSeats" name="numberOfSeats" type="number" placeholder="Broj Sedista" required> <br>
+
+            <label for="numberOfStanding">Number Of Places To Stand: </label>
+            <input ng-model="vehiclea.qnumberOfStanding" id="numberOfStanding" name="numberOfStanding" type="number" placeholder="Broj mesta za stojanje" required> <br>
+
+            <label for="articular">Articular: </label>
+            <select ng-model="vehiclea.qarticular" class="form-select" id="articular" name="articular" required>
+                <option selected>Yes</option>
+                <option>No</option>
+            </select>
+
+            <input class="submitButton" type="submit" value="Create!" ng-click="saveCity(vehiclea)">
+
+    </form>
+
+    <table style="width:98.5%">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Number Of Seats</th>
+        <th>Number Of Places To Stand</th>
+        <th>Articular</th>
+
+        <tr ng-repeat="lista in listOfVehicles">
+            <td>
+                {{lista.parking_id}}
+            </td>
+            <td>
+                {{lista.marka}}
+            </td>
+            <td>
+                {{lista.boja}}
+            </td>
+            <td>
+                {{lista.numberOfSeats}}
+            </td>
+            <td>
+                {{lista.numberOfStanding}}
+            </td>
+            <td>
+                {{lista.articular}}
+            </td>
+        </tr>
+    </table>
+</div>
+

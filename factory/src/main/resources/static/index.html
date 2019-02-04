@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="Application" lang="en">
+<head >
+    <meta charset="UTF-8">
+    <title>Add New Vehicle</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script data-require="angular.js@1.5.x"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.js"
+            data-semver="1.5.11"></script>
+
+    <script src="https://unpkg.com/@uirouter/angularjs@1.0.20/release/angular-ui-router.min.js"></script>
+
+    <script src="script1.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="mainController">
+<div id="container" style="width: 100%; overflow: hidden;">
+
+
+    <div id="Vehicles">
+        <h3 id="h3Vehicles">List of Vehicles</h3>
+        <a id="link-index" href="/vehicle.html">Add new</a> <br>
+
+        <h5 id="h5Vehicles1">Select Category</h5>
+
+        <select class="selection" id="testid" ng-model="vozila" ng-options="testid.name for testid in vehicle">
+            <option value=''>select</option>
+        </select>
+
+        <h5 id="h5Vehicles2">Select Type</h5>
+        <select class="selection" id="vec" ng-disabled="!vozila" ng-model="vozilo" ng-options="vec.name for vec in vozila.type">
+            <option value=''>Select</option>
+        </select>
+
+        <button ng-click="getAllVehicles(vozilo)">Open Form</button>
+
+
+        <table id="tableVehicle">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Color</th>
+            </tr>
+            <tr ng-repeat="listaq in listOfVehicles">
+                <td>{{listaq.parking_id}}</td>
+                <td>{{listaq.marka}}</td>
+                <td>{{listaq.boja}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <vr></vr>
+
+
+
+    <div id="Parking">
+        <h3>List of Vehicles on parking</h3> <br>
+        <h5 id="labelParking">Parking: </h5>
+        <select id="selectParking" ng-model="selectedParking" style="margin-top: -3%;">
+            <option value="one">Parking with roof, 3m</option>
+            <option value="two">Parking with roof, 5m</option>
+            <option value="three">Open Parking</option>
+        </select>
+
+        <button ng-click="GetVehiclesOnParking(selectedParking)" style="margin-top: 1%">Show</button>
+
+
+        <table id="tableParking">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Color</th>
+            </tr>
+            <tr ng-repeat="lista in listOfVehiclesOnParking">
+                <td>{{lista.parking_id}}</td>
+                <td>{{lista.marka}}</td>
+                <td>{{lista.boja}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

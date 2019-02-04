@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="Application" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Vehicle</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script data-require="angular.js@1.5.x"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.js"
+            data-semver="1.5.11"></script>
+
+    <script src="https://unpkg.com/@uirouter/angularjs@1.0.20/release/angular-ui-router.min.js"></script>
+
+    <script src="script1.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="mainController">
+
+<a id="link" id="back" href="index.html">
+    <str>Back</str>
+</a>
+
+<h4>Select Category</h4>
+
+<select id="testid" ng-model="vozila" ng-options="testid.name for testid in vehicle">
+    <option value=''>select</option>
+</select> <br>
+
+<hr>
+
+<h4>Select Type</h4>
+<select id="vec" ng-disabled="!vozila" ng-model="vozilo" ng-options="vec.name for vec in vozila.type">
+    <option value=''>Select</option>
+</select>
+
+<button ng-click="open(vozilo)">Open Form</button>
+
+<hr>
+
+<div ui-view></div>
+
+<hr>
+
+</body>
+</html>

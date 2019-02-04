@@ -1,0 +1,48 @@
+<div>
+
+    <form class="simple-form">
+
+        <h3>Tank Truck</h3>
+
+        <label for="marka">Name:</label>
+        <input ng-model="vehiclea.qname" id="marka" name="marka" type="text" placeholder="Marka" required> <br>
+
+        <label for="boja"> Color:</label>
+        <input ng-model="vehiclea.qcolor" id="boja"  name="boja" type="text" placeholder="Boja" required> <br>
+
+        <label for="numberOfAxles">Number Of Axels:</label>
+        <input ng-model="vehiclea.qaxels" id="numberOfAxles"  name="numberOfAxles" type="number" placeholder="Broj osovina" required> <br>
+
+        <label for="tankCapacity">Tank Capacity:</label>
+        <input ng-model="vehiclea.qtankCapacity" id="tankCapacity"  name="tankCapacity" type="number" placeholder="Nosivost" required> <br>
+
+        <input class="submitButton"  type="submit" value="Create!" ng-click="saveTank(vehiclea)">
+
+    </form>
+
+    <table style="width:98.5%">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Number Of Axels</th>
+        <th>Tank Capacity</th>
+
+        <tr ng-repeat="lista in listOfVehicles">
+            <td>
+                {{lista.parking_id}}
+            </td>
+            <td>
+                {{lista.marka}}
+            </td>
+            <td>
+                {{lista.boja}}
+            </td>
+            <td>
+                {{lista.numberOfAxles}}
+            </td>
+            <td>
+                {{lista.tankCapacity}}
+            </td>
+        </tr>
+    </table>
+</div>
