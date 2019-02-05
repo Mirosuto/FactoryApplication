@@ -20,13 +20,6 @@ public class ParkingService {
 
     int zbirPovrsinaVozila = 0;
 
-    public Vehicle test(Vehicle vozilo) {
-
-        vozilo.setParkingId(2);
-
-        return vozilo;
-    }
-
 
     public Vehicle setParkingToVehicle(Vehicle vozilo) {
 

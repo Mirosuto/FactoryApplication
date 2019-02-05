@@ -44,7 +44,7 @@ public class MainController {
 
         CityBus cityBus = new CityBus(marka, boja, numberOfSeats, numberOfStanding, articular);
 
-        parkingService.test(cityBus);
+        parkingService.setParkingToVehicle(cityBus);
 
         return CityBusService.saveCityBus(cityBus);
     }

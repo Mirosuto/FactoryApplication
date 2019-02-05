@@ -1,5 +1,6 @@
 package com.data.factory.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Indexed;
 
 import javax.persistence.*;
@@ -28,42 +29,52 @@ public class Parking {
     public List<Vehicle> vehicleList = new ArrayList<>();
 
 
+    @JsonIgnore
     public Integer getParking_id() {
         return parking_id;
     }
 
+    @JsonIgnore
     public void setParking_id(Integer parking_id) {
         this.parking_id = parking_id;
     }
 
+    @JsonIgnore
     public double getProstor() {
         return prostor;
     }
 
+    @JsonIgnore
     public void setProstor(double prostor) {
         this.prostor = prostor;
     }
 
+    @JsonIgnore
     public String getTip() {
         return tip;
     }
 
+    @JsonIgnore
     public void setTip(String tip) {
         this.tip = tip;
     }
 
+    @JsonIgnore
     public double getVisina() {
         return visina;
     }
 
+    @JsonIgnore
     public void setVisina(double visina) {
         this.visina = visina;
     }
 
+    @JsonIgnore
     public List<Vehicle> getVehicleList() {
         return vehicleList;
     }
 
+    @JsonIgnore
     public void setVehicleList(List<Vehicle> vehicleList) {
         this.vehicleList = vehicleList;
     }
