@@ -1,6 +1,7 @@
 package com.data.factory.Controller;
 
 import com.data.factory.Model.CityBus;
+import com.data.factory.Model.ClassicCar;
 import com.data.factory.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,9 @@ public class MainController {
 
     @Autowired
     private CityBusService CityBusService;
-//
-//    @Autowired
-//    private ClassicCarService ClassicCarService;
+
+    @Autowired
+    private ClassicCarService ClassicCarService;
 //
 //    @Autowired
 //    private ConvertibleCarService ConvertibleCarService;
@@ -53,29 +54,29 @@ public class MainController {
     public List<CityBus> getAllCity() {
         return CityBusService.getAllCity();
     }
-//
-//
-//    //CLASSIC CAR
-//
-//    @RequestMapping(value = "add-Classic", method = RequestMethod.POST)
-//    public ClassicCar addNewClassicCar(
-//            @RequestParam(value = "marka") String marka,
-//            @RequestParam(value = "boja") String boja,
-//            @RequestParam(value = "seatNbr") int seatNbr,
-//            @RequestParam(value = "equipment") String equipment,
-//            @RequestParam(value = "roofCarryCapacity") int roofCarryCapacity) {
-//
-//        ClassicCar classicCar = new ClassicCar(marka, boja, seatNbr, equipment, roofCarryCapacity);
-//
-//        parkingService.setParkingToVehicle(classicCar);
-//
-//        return ClassicCarService.saveClassicCar(classicCar);
-//    }
-//
-//    @RequestMapping(value = "get-all-Classic", method = RequestMethod.GET)
-//    public List<ClassicCar> getAllClassic() {
-//        return ClassicCarService.getAllClassic();
-//    }
+
+
+    //CLASSIC CAR
+
+    @RequestMapping(value = "add-Classic", method = RequestMethod.POST)
+    public ClassicCar addNewClassicCar(
+            @RequestParam(value = "marka") String marka,
+            @RequestParam(value = "boja") String boja,
+            @RequestParam(value = "seatNbr") int seatNbr,
+            @RequestParam(value = "equipment") String equipment,
+            @RequestParam(value = "roofCarryCapacity") int roofCarryCapacity) {
+
+        ClassicCar classicCar = new ClassicCar(marka, boja, seatNbr, equipment, roofCarryCapacity);
+
+        parkingService.setParkingToVehicle(classicCar);
+
+        return ClassicCarService.saveClassicCar(classicCar);
+    }
+
+    @RequestMapping(value = "get-all-Classic", method = RequestMethod.GET)
+    public List<ClassicCar> getAllClassic() {
+        return ClassicCarService.getAllClassic();
+    }
 //
 //
 //    //CONVERTIBLE CAR

@@ -31,32 +31,26 @@ public class CityBus extends Bus{
     public CityBus() {
     }
 
-    @JsonIgnore
     public Integer getIdNumber() {
         return idNumber;
     }
 
-    @JsonIgnore
     public void setIdNumber(Integer idNumber) {
         this.idNumber = idNumber;
     }
 
-    @JsonIgnore
     public String getArticular() {
         return articular;
     }
 
-    @JsonIgnore
     public void setArticular(String articular) {
         this.articular = articular;
     }
 
-    @JsonIgnore
     public int getPovrsina() {
         return povrsina;
     }
 
-    @JsonIgnore
     public String toString() {
         return "ID: " + this.getIdNumber();
     }

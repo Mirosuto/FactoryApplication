@@ -29,9 +29,10 @@ public abstract class Vehicle {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name="parking_id", nullable = false)
-    public Parking parking = new Parking();
+    public Parking parking;
 
-    @Column(name = "parking_id", updatable = false, insertable = false)
+
+    @Column(name = "parking_id", updatable = false, insertable = false, nullable = false)
     public int parking_id;
 
 
@@ -51,62 +52,58 @@ public abstract class Vehicle {
     public Vehicle() {
     }
 
-    @JsonIgnore
     public String getMarka() {
         return marka;
     }
 
-    @JsonIgnore
     public void setMarka(String marka) {
         this.marka = marka;
     }
 
-    @JsonIgnore
     public String getBoja() {
         return boja;
     }
 
-    @JsonIgnore
     public void setBoja(String boja) {
         this.boja = boja;
     }
 
-    @JsonIgnore
     public int getParkingId() {
         return parking_id;
     }
 
-    @JsonIgnore
     public void setParkingId(int parking_id) {
         this.parking_id = parking_id;
     }
 
-    @JsonIgnore
+    public Parking getParking() {
+        return parking;
+    }
+
+    public void setParking(Parking parking) {
+        this.parking = parking;
+    }
+
     public int getPovrsina() {
         return povrsina;
     }
 
-    @JsonIgnore
     public void setPovrsina(int povrsina) {
         this.povrsina = povrsina;
     }
 
-    @JsonIgnore
     public double getHeight() {
         return height;
     }
 
-    @JsonIgnore
     public void setHeight(double height) {
         this.height = height;
     }
 
-    @JsonIgnore
     public VehicleType getVehicleType() {
         return vehicleType;
     }
 
-    @JsonIgnore
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
     }

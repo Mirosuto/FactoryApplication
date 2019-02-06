@@ -25,46 +25,39 @@ public class Parking {
     @Column
     private double visina;
 
-    @OneToMany(mappedBy = "parking", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parking", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<Vehicle> vehicleList = new ArrayList<>();
 
 
-    @JsonIgnore
+
     public Integer getParking_id() {
         return parking_id;
     }
 
-    @JsonIgnore
     public void setParking_id(Integer parking_id) {
         this.parking_id = parking_id;
     }
 
-    @JsonIgnore
     public double getProstor() {
         return prostor;
     }
 
-    @JsonIgnore
     public void setProstor(double prostor) {
         this.prostor = prostor;
     }
 
-    @JsonIgnore
     public String getTip() {
         return tip;
     }
 
-    @JsonIgnore
     public void setTip(String tip) {
         this.tip = tip;
     }
 
-    @JsonIgnore
     public double getVisina() {
         return visina;
     }
 
-    @JsonIgnore
     public void setVisina(double visina) {
         this.visina = visina;
     }

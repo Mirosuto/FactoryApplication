@@ -26,6 +26,9 @@ public class ParkingService {
         List<Parking> parkings = ParkingRepository.findAll();
 
         for(Parking parking : parkings) {
+
+            zbirPovrsinaVozila = 0;
+
             List<Vehicle> vehiclesInParking = parking.getVehicleList();
 
             vehiclesInParking.forEach((vehicle) -> {
@@ -35,7 +38,7 @@ public class ParkingService {
             double freeParkingSpace = parking.getProstor() - zbirPovrsinaVozila;
 
             if (parking.getVisina() > vozilo.getHeight() && freeParkingSpace > vozilo.getPovrsina()) {
-                vozilo.setParkingId(parking.getParking_id());
+                vozilo.setParking(parking);
                 break;
             }
         }
