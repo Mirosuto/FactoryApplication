@@ -37,7 +37,7 @@ public class ParkingService {
 
             double freeParkingSpace = parking.getProstor() - zbirPovrsinaVozila;
 
-            if (parking.getVisina() > vozilo.getHeight() && freeParkingSpace > vozilo.getPovrsina()) {
+            if (parking.getVisina() >= vozilo.getHeight() && freeParkingSpace >= vozilo.getPovrsina()) {
                 vozilo.setParking(parking);
                 break;
             }
