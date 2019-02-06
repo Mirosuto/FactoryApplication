@@ -14,7 +14,7 @@ app.controller('mainController', function ($scope, $location) {
 
     $scope.getAllVehicles = function () {
         $.ajax({
-            url: "/vehicle/get-all-" + $scope.vozilo.name,
+            url: "/vehicle/get-all-" + $scope.vozilo.name + "-" + $scope.vozila.name,
             method: "GET",
             success: function (data) {
                 $scope.listOfVehicles = data;
@@ -26,6 +26,24 @@ app.controller('mainController', function ($scope, $location) {
             }
         });
     };
+
+    $scope.getAllVehicleParents = function (vozila) {
+        $.ajax({
+            url: "/vehicle/get-all-" + $scope.vozila.name,
+            method: "GET",
+            success: function (data) {
+                $scope.listOfVehicles = data;
+                $scope.$apply();
+                console.log(data)},
+            error(xhr) {
+                console.log(xhr);
+                alert("failed to retrieve data!");
+            }
+        });
+    };
+
+
+
 
     $scope.GetVehiclesOnParking = function (selectedParking) {
         $.ajax({

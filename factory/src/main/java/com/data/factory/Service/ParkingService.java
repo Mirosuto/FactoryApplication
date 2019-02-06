@@ -6,6 +6,7 @@ import com.data.factory.Repository.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,7 +20,7 @@ public class ParkingService {
     }
 
     int zbirPovrsinaVozila = 0;
-
+    List<Vehicle> listaVozilaNaParkingu = new ArrayList<>();
 
     public Vehicle setParkingToVehicle(Vehicle vozilo) {
 
@@ -31,20 +32,25 @@ public class ParkingService {
 
             List<Vehicle> vehiclesInParking = parking.getVehicleList();
 
+
             vehiclesInParking.forEach((vehicle) -> {
                 zbirPovrsinaVozila += vehicle.getPovrsina();
             });
+
 
             double freeParkingSpace = parking.getProstor() - zbirPovrsinaVozila;
 
             if (parking.getVisina() >= vozilo.getHeight() && freeParkingSpace >= vozilo.getPovrsina()) {
                 vozilo.setParking(parking);
+                Parking.vehicleList.add(vozilo);
                 break;
             }
         }
         return vozilo;
     }
 }
+
+
 
 
 

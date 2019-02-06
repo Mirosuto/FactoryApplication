@@ -1,5 +1,6 @@
 package com.data.factory.Model;
 
+import com.data.factory.enums.BusTypes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,8 +12,10 @@ public class CityBus extends Bus{
     @Column
     private String articular;
 
+    @JsonIgnore
     @Transient
     public static final double height = 3.4;
+    @JsonIgnore
     @Transient
     public final int povrsina = 30;
 

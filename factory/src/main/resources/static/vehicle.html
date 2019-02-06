@@ -21,7 +21,7 @@
     <str>Back</str>
 </a>
 
-<h4>Select Category</h4>
+<h4>Select category</h4>
 
 <select id="testid" ng-model="vozila" ng-options="testid.name for testid in vehicle">
     <option value=''>select</option>
@@ -29,12 +29,12 @@
 
 <hr>
 
-<h4>Select Type</h4>
-<select id="vec" ng-disabled="!vozila" ng-model="vozilo" ng-options="vec.name for vec in vozila.type">
+<h4>Then select type:</h4>
+<select ng-change="open(vozilo)" id="vec" ng-disabled="!vozila" ng-model="vozilo" ng-options="vec.name for vec in vozila.type">
     <option value=''>Select</option>
 </select>
 
-<button ng-click="open(vozilo)">Open Form</button>
+<!--<button ng-click="open(vozilo)">Open Form</button>-->
 
 <hr>
 

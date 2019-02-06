@@ -1,5 +1,7 @@
 package com.data.factory.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +11,11 @@ public class ClassicCar extends Car{
     @Column
     private int roofCarryCapacity;
 
+    @JsonIgnore
     @Transient
     public static final double height = 2.4;
 
+    @JsonIgnore
     @Transient
     public final int povrsina = 8;
 

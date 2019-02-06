@@ -5,6 +5,8 @@ import com.data.factory.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.sax.SAXSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -46,6 +48,7 @@ public class MainController {
 
         parkingService.setParkingToVehicle(cityBus);
 
+
         return CityBusService.saveCityBus(cityBus);
     }
 
@@ -54,6 +57,18 @@ public class MainController {
         return CityBusService.getAllCity();
     }
 
+    @RequestMapping(value = "get-all-City-Bus", method = RequestMethod.GET)
+    public List<Vehicle> getAllCityBus() {
+        String equalsString = "com.data.factory.Model.CityBus";
+
+        return getListOfVehicles(equalsString);
+    }
+
+    @RequestMapping(value = "get-all-Bus", method = RequestMethod.GET)
+    public List<Vehicle> getAllCityBusParent() {
+        String equalsString = "com.data.factory.Model.Bus";
+        return getListOfVehiclesParent(equalsString);
+    }
 
     //CLASSIC CAR
 
@@ -75,6 +90,18 @@ public class MainController {
     @RequestMapping(value = "get-all-Classic", method = RequestMethod.GET)
     public List<ClassicCar> getAllClassic() {
         return ClassicCarService.getAllClassic();
+    }
+
+    @RequestMapping(value = "get-all-Classic-Car", method = RequestMethod.GET)
+    public List<Vehicle> getAllClassicCar() {
+        String equalsString = "com.data.factory.Model.ClassicCar";
+        return getListOfVehicles(equalsString);
+    }
+
+    @RequestMapping(value = "get-all-Car", method = RequestMethod.GET)
+    public List<Vehicle> getAllClassicCarParent() {
+        String equalsString = "com.data.factory.Model.Car";
+        return getListOfVehiclesParent(equalsString);
     }
 
 
@@ -100,6 +127,19 @@ public class MainController {
         return ConvertibleCarService.getAllConvertible();
     }
 
+    @RequestMapping(value = "get-all-Convertible-Car", method = RequestMethod.GET)
+    public List<Vehicle> getAllConvertibleCar() {
+        String equalsString = "com.data.factory.Model.ConvertibleCar";
+        return getListOfVehicles(equalsString);
+    }
+
+//    @RequestMapping(value = "get-all-Car", method = RequestMethod.GET)
+//    public List<Vehicle> getAllConvertibleCarParent() {
+//        String equalsString = "com.data.factory.Model.Car";
+//        return getListOfVehiclesParent(equalsString);
+//    }
+
+
 
     //TANK TRUCK
 
@@ -121,6 +161,19 @@ public class MainController {
     public List<TankTrunk> getAllTank() {
         return TankTruckService.getAllTank();
     }
+
+    @RequestMapping(value = "get-all-Tank-Truck", method = RequestMethod.GET)
+    public List<Vehicle> getAllTankTruck() {
+        String equalsString = "com.data.factory.Model.TankTruck";
+        return getListOfVehicles(equalsString);
+    }
+
+    @RequestMapping(value = "get-all-Truck", method = RequestMethod.GET)
+    public List<Vehicle> getAllTankTruckParent() {
+        String equalsString = "com.data.factory.Model.Truck";
+        return getListOfVehiclesParent(equalsString);
+    }
+
 
 
     //TOW TRUCK
@@ -144,6 +197,19 @@ public class MainController {
         return TowTruckService.getAllTow();
     }
 
+    @RequestMapping(value = "get-all-Tow-Truck", method = RequestMethod.GET)
+    public List<Vehicle> getAllTowTruck() {
+        String equalsString = "com.data.factory.Model.TowTruck";
+        return getListOfVehicles(equalsString);
+    }
+
+//    @RequestMapping(value = "get-all-Truck", method = RequestMethod.GET)
+//    public List<Vehicle> getAllTowTruckParent() {
+//        String equalsString = "com.data.factory.Model.Truck";
+//        return getListOfVehiclesParent(equalsString);
+//    }
+
+
 
     //TRAVEL BUS
 
@@ -165,6 +231,55 @@ public class MainController {
     @RequestMapping(value = "get-all-Travel", method = RequestMethod.GET)
     public List<TravelBus> getAllTravel() {
         return TravelBusService.getAllTravel();
+    }
+
+    @RequestMapping(value = "get-all-Travel-Bus", method = RequestMethod.GET)
+    public List<Vehicle> getAllTravelBus() {
+        String equalsString = "com.data.factory.Model.TravelBus";
+        return getListOfVehicles(equalsString);
+    }
+
+//    @RequestMapping(value = "get-all-Bus", method = RequestMethod.GET)
+//    public List<Vehicle> getAllTravelBusParent() {
+//        String equalsString = "com.data.factory.Model.Bus";
+//        return getListOfVehiclesParent(equalsString);
+//    }
+
+
+    //Methods
+
+    public List<Vehicle> getListOfVehicles(String equalsString){
+
+        Parking parking = new Parking();
+
+        List<Vehicle> listaSvihVozilaIzBaze = parking.getVehicleList();
+        List<Vehicle> listaVozila = new ArrayList<>();
+        listaSvihVozilaIzBaze.forEach(vehicle -> {
+
+            if (vehicle.getClass().getName().equals(equalsString)){
+                listaVozila.add(vehicle);
+            }
+
+        });
+
+        return listaVozila;
+    }
+
+    public List<Vehicle> getListOfVehiclesParent(String equalsString){
+
+        Parking parking = new Parking();
+
+        List<Vehicle> listaSvihVozilaIzBaze = parking.getVehicleList();
+        List<Vehicle> listaVozila = new ArrayList<>();
+        listaSvihVozilaIzBaze.forEach(vehicle -> {
+
+            if (vehicle.getClass().getSuperclass().getName().equals(equalsString)){
+                listaVozila.add(vehicle);
+            }
+
+        });
+
+        return listaVozila;
     }
 
 }

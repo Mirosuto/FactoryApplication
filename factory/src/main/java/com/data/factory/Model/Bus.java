@@ -1,5 +1,8 @@
 package com.data.factory.Model;
 
+import com.data.factory.enums.BusTypes;
+import com.data.factory.enums.VehicleType;
+
 import javax.persistence.*;
 
 @Entity

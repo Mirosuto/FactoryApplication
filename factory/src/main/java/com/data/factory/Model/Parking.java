@@ -26,7 +26,7 @@ public class Parking {
     private double visina;
 
     @OneToMany(mappedBy = "parking", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public List<Vehicle> vehicleList = new ArrayList<>();
+    public static List<Vehicle> vehicleList = new ArrayList<>();
 
 
 

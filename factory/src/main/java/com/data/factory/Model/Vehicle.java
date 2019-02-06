@@ -1,6 +1,6 @@
 package com.data.factory.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.data.factory.enums.VehicleType;
 
 import javax.persistence.*;
 
