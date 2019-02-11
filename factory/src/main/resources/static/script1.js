@@ -2,9 +2,9 @@ var app = angular.module('Application', ['ui.router']);
 
 app.controller('mainController', function ($scope, $location) {
     $scope.vehicle = [
-        {name: "Car", type: [{name: "Classic"}, {name: "Convertible"}]},
-        {name: "Bus", type: [{name: "City"}, {name: "Travel"}]},
-        {name: "Truck", type: [{name: "Tank"}, {name: "Tow"}]}];
+        {name: "CAR", type: [{name: "Classic"}, {name: "Convertible"}]},
+        {name: "BUS", type: [{name: "City"}, {name: "Travel"}]},
+        {name: "TRUCK", type: [{name: "Tank"}, {name: "Tow"}]}];
 
 
     $scope.open = function (vozilo) {
@@ -13,7 +13,7 @@ app.controller('mainController', function ($scope, $location) {
     };
 
     $scope.getAllVehicles = function () {
-        $.ajax({
+        $.ajax({  //                        "City"                      "BUS"
             url: "/vehicle/get-all-" + $scope.vozilo.name + "-" + $scope.vozila.name,
             method: "GET",
             success: function (data) {
@@ -29,8 +29,9 @@ app.controller('mainController', function ($scope, $location) {
 
     $scope.getAllVehicleParents = function (vozila) {
         $.ajax({
-            url: "/vehicle/get-all-" + $scope.vozila.name,
+            url: "/vehicle/get-parent",
             method: "GET",
+            data: { parentName: vozila.name },
             success: function (data) {
                 $scope.listOfVehicles = data;
                 $scope.$apply();
@@ -47,8 +48,9 @@ app.controller('mainController', function ($scope, $location) {
 
     $scope.GetVehiclesOnParking = function (selectedParking) {
         $.ajax({
-            url: "/vehicle/get-parking-" + selectedParking,
+            url: "/vehicle/get-parking",
             method: "GET",
+            data: { idOfParking: selectedParking },
             success: function (data) {
                 $scope.listOfVehiclesOnParking = data;
                 $scope.$apply();
@@ -177,7 +179,24 @@ app.controller('mainController', function ($scope, $location) {
                 alert(jqXHR.status + " " + jqXHR.responseText + " " + textStatus + " " + errorThrown);
             }
         });
-    }
+    };
+
+    $scope.delete = function(idNumber){
+        $.ajax({
+            url: "/vehicle/delete-" + $scope.vozilo.name,
+            method: "POST",
+            data: {
+                idNumber: idNumber
+            },
+            success: function (data) {
+                $scope.getAllVehicles();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.status + " " + jqXHR.responseText + " " + textStatus + " " + errorThrown);
+            }
+        });
+    };
+
 
 });
 

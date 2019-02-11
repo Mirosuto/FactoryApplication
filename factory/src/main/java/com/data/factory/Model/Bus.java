@@ -34,6 +34,10 @@ public abstract class Bus extends Vehicle {
     public Bus() {
     }
 
+    public String getMyType(){
+        return busTypes.toString();
+    }
+
     public BusTypes getBusTypes() {
         return busTypes;
     }

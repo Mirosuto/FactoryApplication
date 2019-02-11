@@ -2,12 +2,15 @@ package com.data.factory.Controller;
 
 import com.data.factory.Model.*;
 import com.data.factory.Service.*;
+import com.data.factory.enums.BusTypes;
+import com.data.factory.enums.CarTypes;
+import com.data.factory.enums.TruckTypes;
+import com.data.factory.enums.VehicleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.transform.sax.SAXSource;
-import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/vehicle")
@@ -34,6 +37,9 @@ public class MainController {
     @Autowired
     private ParkingService parkingService;
 
+    @Autowired
+    private VehicleService vehicleService;
+
     //CITY BUS
 
     @RequestMapping(value = "add-City", method = RequestMethod.POST)
@@ -57,17 +63,14 @@ public class MainController {
         return CityBusService.getAllCity();
     }
 
-    @RequestMapping(value = "get-all-City-Bus", method = RequestMethod.GET)
+    @RequestMapping(value = "get-all-City-BUS", method = RequestMethod.GET)
     public List<Vehicle> getAllCityBus() {
-        String equalsString = "com.data.factory.Model.CityBus";
-
-        return getListOfVehicles(equalsString);
+        return vehicleService.getListOfVehicles(VehicleType.BUS, BusTypes.CITY_BUS.toString());
     }
 
-    @RequestMapping(value = "get-all-Bus", method = RequestMethod.GET)
-    public List<Vehicle> getAllCityBusParent() {
-        String equalsString = "com.data.factory.Model.Bus";
-        return getListOfVehiclesParent(equalsString);
+    @RequestMapping(value = "delete-City", method = RequestMethod.POST)
+    public void deleteCityBus( @RequestParam(value = "idNumber") Integer id) {
+        CityBusService.deleteCity(id);
     }
 
     //CLASSIC CAR
@@ -92,18 +95,10 @@ public class MainController {
         return ClassicCarService.getAllClassic();
     }
 
-    @RequestMapping(value = "get-all-Classic-Car", method = RequestMethod.GET)
+    @RequestMapping(value = "get-all-Classic-CAR", method = RequestMethod.GET)
     public List<Vehicle> getAllClassicCar() {
-        String equalsString = "com.data.factory.Model.ClassicCar";
-        return getListOfVehicles(equalsString);
+        return vehicleService.getListOfVehicles(VehicleType.CAR, CarTypes.CLASSIC_CAR.toString());
     }
-
-    @RequestMapping(value = "get-all-Car", method = RequestMethod.GET)
-    public List<Vehicle> getAllClassicCarParent() {
-        String equalsString = "com.data.factory.Model.Car";
-        return getListOfVehiclesParent(equalsString);
-    }
-
 
     //CONVERTIBLE CAR
 
@@ -127,30 +122,21 @@ public class MainController {
         return ConvertibleCarService.getAllConvertible();
     }
 
-    @RequestMapping(value = "get-all-Convertible-Car", method = RequestMethod.GET)
+    @RequestMapping(value = "get-all-Convertible-CAR", method = RequestMethod.GET)
     public List<Vehicle> getAllConvertibleCar() {
-        String equalsString = "com.data.factory.Model.ConvertibleCar";
-        return getListOfVehicles(equalsString);
+        return vehicleService.getListOfVehicles(VehicleType.CAR, CarTypes.CONVERTIBLE_CAR.toString());
     }
-
-//    @RequestMapping(value = "get-all-Car", method = RequestMethod.GET)
-//    public List<Vehicle> getAllConvertibleCarParent() {
-//        String equalsString = "com.data.factory.Model.Car";
-//        return getListOfVehiclesParent(equalsString);
-//    }
-
-
 
     //TANK TRUCK
 
     @RequestMapping(value = "add-Tank", method = RequestMethod.POST)
-    public TankTrunk addNewTankTruck(
+    public TankTruck addNewTankTruck(
             @RequestParam(value = "marka") String marka,
             @RequestParam(value = "boja") String boja,
             @RequestParam(value = "numberOfAxles") int numberOfAxles,
             @RequestParam(value = "tankCapacity") Double tankCapacity) {
 
-        TankTrunk tankTruck = new TankTrunk(marka, boja, numberOfAxles, tankCapacity);
+        TankTruck tankTruck = new TankTruck(marka, boja, numberOfAxles, tankCapacity);
 
         parkingService.setParkingToVehicle(tankTruck);
 
@@ -158,23 +144,14 @@ public class MainController {
     }
 
     @RequestMapping(value = "get-all-Tank", method = RequestMethod.GET)
-    public List<TankTrunk> getAllTank() {
+    public List<TankTruck> getAllTank() {
         return TankTruckService.getAllTank();
     }
 
-    @RequestMapping(value = "get-all-Tank-Truck", method = RequestMethod.GET)
+    @RequestMapping(value = "get-all-Tank-TRUCK", method = RequestMethod.GET)
     public List<Vehicle> getAllTankTruck() {
-        String equalsString = "com.data.factory.Model.TankTruck";
-        return getListOfVehicles(equalsString);
+        return vehicleService.getListOfVehicles(VehicleType.TRUCK, TruckTypes.TANK_TRUCK.toString());
     }
-
-    @RequestMapping(value = "get-all-Truck", method = RequestMethod.GET)
-    public List<Vehicle> getAllTankTruckParent() {
-        String equalsString = "com.data.factory.Model.Truck";
-        return getListOfVehiclesParent(equalsString);
-    }
-
-
 
     //TOW TRUCK
 
@@ -197,19 +174,10 @@ public class MainController {
         return TowTruckService.getAllTow();
     }
 
-    @RequestMapping(value = "get-all-Tow-Truck", method = RequestMethod.GET)
+    @RequestMapping(value = "get-all-Tow-TRUCK", method = RequestMethod.GET)
     public List<Vehicle> getAllTowTruck() {
-        String equalsString = "com.data.factory.Model.TowTruck";
-        return getListOfVehicles(equalsString);
+        return vehicleService.getListOfVehicles(VehicleType.TRUCK, TruckTypes.TOW_TRUCK.toString());
     }
-
-//    @RequestMapping(value = "get-all-Truck", method = RequestMethod.GET)
-//    public List<Vehicle> getAllTowTruckParent() {
-//        String equalsString = "com.data.factory.Model.Truck";
-//        return getListOfVehiclesParent(equalsString);
-//    }
-
-
 
     //TRAVEL BUS
 
@@ -233,53 +201,22 @@ public class MainController {
         return TravelBusService.getAllTravel();
     }
 
-    @RequestMapping(value = "get-all-Travel-Bus", method = RequestMethod.GET)
+    @RequestMapping(value = "get-all-Travel-BUS", method = RequestMethod.GET)
     public List<Vehicle> getAllTravelBus() {
-        String equalsString = "com.data.factory.Model.TravelBus";
-        return getListOfVehicles(equalsString);
+        return vehicleService.getListOfVehicles(VehicleType.BUS, BusTypes.TRAVEL_BUS.toString());
     }
 
-//    @RequestMapping(value = "get-all-Bus", method = RequestMethod.GET)
-//    public List<Vehicle> getAllTravelBusParent() {
-//        String equalsString = "com.data.factory.Model.Bus";
-//        return getListOfVehiclesParent(equalsString);
-//    }
+    //Parking
 
-
-    //Methods
-
-    public List<Vehicle> getListOfVehicles(String equalsString){
-
-        Parking parking = new Parking();
-
-        List<Vehicle> listaSvihVozilaIzBaze = parking.getVehicleList();
-        List<Vehicle> listaVozila = new ArrayList<>();
-        listaSvihVozilaIzBaze.forEach(vehicle -> {
-
-            if (vehicle.getClass().getName().equals(equalsString)){
-                listaVozila.add(vehicle);
-            }
-
-        });
-
-        return listaVozila;
+    @RequestMapping(value = "get-parking", method = RequestMethod.GET)
+    public List<Vehicle> getVehiclesOnParking(@RequestParam(value = "idOfParking") String parkingNumber){
+        return parkingService.getListOfVehiclesOnSpecificParking(Integer.valueOf(parkingNumber));
     }
 
-    public List<Vehicle> getListOfVehiclesParent(String equalsString){
-
-        Parking parking = new Parking();
-
-        List<Vehicle> listaSvihVozilaIzBaze = parking.getVehicleList();
-        List<Vehicle> listaVozila = new ArrayList<>();
-        listaSvihVozilaIzBaze.forEach(vehicle -> {
-
-            if (vehicle.getClass().getSuperclass().getName().equals(equalsString)){
-                listaVozila.add(vehicle);
-            }
-
-        });
-
-        return listaVozila;
+    //List of Buses/Cars/Trucks
+    @RequestMapping(value = "get-parent", method = RequestMethod.GET)
+    public List<Vehicle> getAllCityBusParent( @RequestParam(value = "parentName", required=false) String parentName) {
+        return vehicleService.getListOfVehiclesParent(parentName);
     }
 
 }

@@ -1,5 +1,5 @@
 package com.data.factory.enums;
 
 public enum TruckTypes {
-    TANK_TRUCK, TOW_TRACK
+    TANK_TRUCK, TOW_TRUCK
 }

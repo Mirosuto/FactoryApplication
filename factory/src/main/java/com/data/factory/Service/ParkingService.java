@@ -6,8 +6,8 @@ import com.data.factory.Repository.ParkingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class ParkingService {
@@ -20,7 +20,6 @@ public class ParkingService {
     }
 
     int zbirPovrsinaVozila = 0;
-    List<Vehicle> listaVozilaNaParkingu = new ArrayList<>();
 
     public Vehicle setParkingToVehicle(Vehicle vozilo) {
 
@@ -42,17 +41,23 @@ public class ParkingService {
 
             if (parking.getVisina() >= vozilo.getHeight() && freeParkingSpace >= vozilo.getPovrsina()) {
                 vozilo.setParking(parking);
-                Parking.vehicleList.add(vozilo);
                 break;
             }
         }
         return vozilo;
     }
+
+
+    public List<Vehicle> getListOfVehiclesOnSpecificParking(Integer parkingNumber){
+
+        Parking parking = new Parking();
+
+        List<Vehicle> listaSvihVozilaIzBaze = parking.getListOfAllVehiclesAddedToDataBase();
+        List<Vehicle> parkingStream = listaSvihVozilaIzBaze.stream()
+                .filter(e -> Integer.valueOf(e.getParking().getParking_id()).equals(parkingNumber)).collect(toList());
+
+
+        return parkingStream;
+    }
+
 }
-
-
-
-
-
-
-

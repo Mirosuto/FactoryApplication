@@ -52,6 +52,17 @@ public abstract class Vehicle {
     public Vehicle() {
     }
 
+
+    public abstract String getMyType();
+
+    public Integer getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(Integer idNumber) {
+        this.idNumber = idNumber;
+    }
+
     public String getMarka() {
         return marka;
     }

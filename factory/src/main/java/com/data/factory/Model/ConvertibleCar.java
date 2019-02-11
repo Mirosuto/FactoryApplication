@@ -31,6 +31,11 @@ public class ConvertibleCar extends Car{
     }
 
 
+    @Override
+    public String getMyType() {
+        return getCarTypes().toString();
+    }
+
 
     public Integer getIdNumber() {
         return idNumber;

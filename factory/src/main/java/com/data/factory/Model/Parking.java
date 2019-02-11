@@ -26,7 +26,10 @@ public class Parking {
     private double visina;
 
     @OneToMany(mappedBy = "parking", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public static List<Vehicle> vehicleList = new ArrayList<>();
+    public List<Vehicle> vehicleList = new ArrayList<>();
+
+    @Transient
+    public static List<Vehicle> listOfAllVehiclesAddedToDataBase = new ArrayList<>();
 
 
 
@@ -70,6 +73,16 @@ public class Parking {
     @JsonIgnore
     public void setVehicleList(List<Vehicle> vehicleList) {
         this.vehicleList = vehicleList;
+    }
+
+    @Transient
+    public void parkVehicle(Vehicle vehicle) {
+        this.vehicleList.add(vehicle);
+    }
+
+    @JsonIgnore
+    public static List<Vehicle> getListOfAllVehiclesAddedToDataBase() {
+        return listOfAllVehiclesAddedToDataBase;
     }
 
     public String toString() {

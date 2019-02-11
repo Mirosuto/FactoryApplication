@@ -25,8 +25,8 @@
 
         <h5 id="h5Vehicles1">Select Category</h5>
 
-        <select ng-change="getAllVehicleParents()" class="selection" id="testid" ng-model="vozila" ng-options="testid.name for testid in vehicle">
-            <option value=''>select</option>
+        <select ng-change="getAllVehicleParents(vozila)" class="selection" id="parentName" name="parentName" ng-model="vozila" ng-options="parentName.name for parentName in vehicle">
+            <option name="parentName" value=''>select</option>
         </select>
 
         <h5 id="h5Vehicles2">Select Type</h5>
@@ -36,14 +36,18 @@
 
         <table id="tableVehicle">
             <tr>
-                <th>ID</th>
+                <th>Vehicle ID</th>
                 <th>Name</th>
                 <th>Color</th>
+                <th>Parking ID</th>
+                <th>Function</th>
             </tr>
             <tr ng-repeat="listaq in listOfVehicles">
-                <td>{{listaq.parking.parking_id}}</td>
+                <td>{{listaq.idNumber}}</td>
                 <td>{{listaq.marka}}</td>
                 <td>{{listaq.boja}}</td>
+                <td>{{listaq.parking.parking_id}}</td>
+                <td><button ng-click="delete(listaq.idNumber)">Delete</button></td>
             </tr>
         </table>
     </div>
@@ -57,14 +61,11 @@
     <div id="Parking">
         <h3>List of Vehicles on parking</h3> <br>
         <h5 id="labelParking">Parking: </h5>
-        <select id="selectParking" ng-model="selectedParking" style="margin-top: -3%;">
-            <option value="one">Parking with roof, 3m</option>
-            <option value="two">Parking with roof, 5m</option>
-            <option value="three">Open Parking</option>
+        <select ng-change="GetVehiclesOnParking(selectedParking)" id="selectParking" ng-model="selectedParking" style="margin-top: -3%;">
+            <option value="1">Parking with roof, 3m</option>
+            <option value="2">Parking with roof, 5m</option>
+            <option value="3">Open Parking</option>
         </select>
-
-        <button ng-click="GetVehiclesOnParking(selectedParking)" style="margin-top: 1%">Show</button>
-
 
         <table id="tableParking">
             <tr>
@@ -73,7 +74,7 @@
                 <th>Color</th>
             </tr>
             <tr ng-repeat="lista in listOfVehiclesOnParking">
-                <td>{{lista.parking_id}}</td>
+                <td>{{lista.idNumber}}</td>
                 <td>{{lista.marka}}</td>
                 <td>{{lista.boja}}</td>
             </tr>

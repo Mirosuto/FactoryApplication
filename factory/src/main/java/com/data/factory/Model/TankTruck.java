@@ -3,7 +3,7 @@ package com.data.factory.Model;
 import javax.persistence.*;
 
 @Entity
-public class TankTrunk extends Truck{
+public class TankTruck extends Truck{
 
     @Column
     private Double tankCapacity;
@@ -14,19 +14,24 @@ public class TankTrunk extends Truck{
     public static final  int povrsina = 20;
 
 
-    public TankTrunk(String marka, String boja, int parking, int numberOfAxles, Double tankCapacity){
+    public TankTruck(String marka, String boja, int parking, int numberOfAxles, Double tankCapacity){
         super(marka, parking, boja,  numberOfAxles);
         this.tankCapacity = tankCapacity;
         this.setTruckTypes(truckTypes.TANK_TRUCK);
     }
 
-    public TankTrunk(String marka, String boja, int numberOfAxles, Double tankCapacity){
+    public TankTruck(String marka, String boja, int numberOfAxles, Double tankCapacity){
         super(marka, boja, numberOfAxles, height);
         this.tankCapacity = tankCapacity;
         this.setTruckTypes(truckTypes.TANK_TRUCK);
     }
 
-    public TankTrunk() {
+    public TankTruck() {
+    }
+
+    @Override
+    public String getMyType() {
+         return getTruckTypes().toString();
     }
 
     public Integer getIdNumber() {

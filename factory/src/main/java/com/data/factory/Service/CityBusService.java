@@ -1,12 +1,13 @@
 package com.data.factory.Service;
 
 import com.data.factory.Model.CityBus;
+import com.data.factory.Model.Parking;
 import com.data.factory.Model.Vehicle;
 import com.data.factory.Repository.CityBusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -19,26 +20,38 @@ public class CityBusService {
         this.CityBusRepository = CityBusRepository;
     }
 
-    //SAVE METHOD
+    //SAVE
     public CityBus saveCityBus(CityBus cityBus) {
 
         cityBus = CityBusRepository.save(cityBus);
+        Parking.listOfAllVehiclesAddedToDataBase.add(cityBus);
         return cityBus;
     }
 
-    //PULL METHOD
+    //PULL
     public List<CityBus> getAllCity() {
         List<CityBus> list = CityBusRepository.findAll();
         return list;
     }
 
-    public List<Vehicle> getAllBusses(){
+    //DELETE
+    public Iterator<Vehicle> deleteCity(Integer id) {
+        List<Vehicle> list = Parking.listOfAllVehiclesAddedToDataBase;
 
-        List<Vehicle> listaAutobusa = new ArrayList<>();
+        Iterator<Vehicle> iterator = list.iterator();
+        if (id != null && id != 0) {
+            CityBusRepository.delete(CityBusRepository.findByIdNumber(id));
 
-        return listaAutobusa ;
+            while ( iterator.hasNext() ) {
+                Vehicle vehicle = iterator.next();
+                if (vehicle.getIdNumber() == id) {
+                    iterator.remove();
+                }
+            }
+
+
+        } return iterator;
     }
-
 }
 
 

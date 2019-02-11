@@ -15,16 +15,21 @@ public class TowTruck extends Truck{
     public TowTruck(String marka, String boja,  int parking, int numberOfAxles, Double towingCapacity){
         super(marka, parking, boja, numberOfAxles);
         this.towingCapacity = towingCapacity;
-        this.setTruckTypes(truckTypes.TOW_TRACK);
+        this.setTruckTypes(truckTypes.TOW_TRUCK);
     }
 
     public TowTruck(String marka, String boja, int numberOfAxles, Double towingCapacity){
         super(marka, boja, numberOfAxles, height);
         this.towingCapacity = towingCapacity;
-        this.setTruckTypes(truckTypes.TOW_TRACK);
+        this.setTruckTypes(truckTypes.TOW_TRUCK);
     }
 
     public TowTruck() {
+    }
+
+    @Override
+    public String getMyType() {
+        return getTruckTypes().toString();
     }
 
     public Integer getIdNumber() {

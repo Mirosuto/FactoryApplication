@@ -35,6 +35,10 @@ public class ClassicCar extends Car{
     public ClassicCar() {
     }
 
+    @Override
+    public String getMyType() {
+        return getCarTypes().toString();
+    }
 
 
     public Integer getIdNumber() {

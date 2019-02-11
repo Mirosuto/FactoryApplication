@@ -32,6 +32,11 @@ public class TravelBus extends Bus{
     public TravelBus() {
     }
 
+    @Override
+    public String getMyType() {
+        return getBusTypes().toString();
+    }
+
     public Integer getIdNumber() {
         return idNumber;
     }
