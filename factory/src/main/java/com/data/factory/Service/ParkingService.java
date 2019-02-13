@@ -50,14 +50,13 @@ public class ParkingService {
 
     public List<Vehicle> getListOfVehiclesOnSpecificParking(Integer parkingNumber){
 
-        Parking parking = new Parking();
+//        Parking parking = new Parking();
+//        List<Vehicle> listaSvihVozilaIzBaze =
+            return Parking.getListOfAllVehiclesAddedToDataBase()
+                .stream()
+                .filter(e -> Integer.valueOf(e.getParking().getParking_id()).equals(parkingNumber))
+                .collect(toList());
 
-        List<Vehicle> listaSvihVozilaIzBaze = parking.getListOfAllVehiclesAddedToDataBase();
-        List<Vehicle> parkingStream = listaSvihVozilaIzBaze.stream()
-                .filter(e -> Integer.valueOf(e.getParking().getParking_id()).equals(parkingNumber)).collect(toList());
-
-
-        return parkingStream;
     }
 
 }

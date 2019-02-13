@@ -9,6 +9,7 @@ import com.data.factory.enums.VehicleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -69,9 +70,10 @@ public class MainController {
     }
 
     @RequestMapping(value = "delete-City", method = RequestMethod.POST)
-    public void deleteCityBus( @RequestParam(value = "idNumber") Integer id) {
-        CityBusService.deleteCity(id);
+    public void deleteCityBus( @RequestParam(value = "idNumber") Integer id) throws SQLException, ClassNotFoundException {
+        CityBusService.deleteCityBus(id);
     }
+
 
     //CLASSIC CAR
 
@@ -98,6 +100,11 @@ public class MainController {
     @RequestMapping(value = "get-all-Classic-CAR", method = RequestMethod.GET)
     public List<Vehicle> getAllClassicCar() {
         return vehicleService.getListOfVehicles(VehicleType.CAR, CarTypes.CLASSIC_CAR.toString());
+    }
+
+    @RequestMapping(value = "delete-Classic", method = RequestMethod.POST)
+    public void deleteClassicCar( @RequestParam(value = "idNumber") Integer id) throws SQLException, ClassNotFoundException {
+        ClassicCarService.deleteClassicCar(id);
     }
 
     //CONVERTIBLE CAR
@@ -127,6 +134,11 @@ public class MainController {
         return vehicleService.getListOfVehicles(VehicleType.CAR, CarTypes.CONVERTIBLE_CAR.toString());
     }
 
+    @RequestMapping(value = "delete-Convertible", method = RequestMethod.POST)
+    public void deleteConvertibleCar( @RequestParam(value = "idNumber") Integer id) throws SQLException, ClassNotFoundException {
+        ConvertibleCarService.deleteConvertibleCar(id);
+    }
+
     //TANK TRUCK
 
     @RequestMapping(value = "add-Tank", method = RequestMethod.POST)
@@ -151,6 +163,11 @@ public class MainController {
     @RequestMapping(value = "get-all-Tank-TRUCK", method = RequestMethod.GET)
     public List<Vehicle> getAllTankTruck() {
         return vehicleService.getListOfVehicles(VehicleType.TRUCK, TruckTypes.TANK_TRUCK.toString());
+    }
+
+    @RequestMapping(value = "delete-Tank", method = RequestMethod.POST)
+    public void deleteTank( @RequestParam(value = "idNumber") Integer id) throws SQLException, ClassNotFoundException {
+        TankTruckService.deleteTankTruck(id);
     }
 
     //TOW TRUCK
@@ -179,6 +196,11 @@ public class MainController {
         return vehicleService.getListOfVehicles(VehicleType.TRUCK, TruckTypes.TOW_TRUCK.toString());
     }
 
+    @RequestMapping(value = "delete-Tow", method = RequestMethod.POST)
+    public void deleteTowTruck( @RequestParam(value = "idNumber") Integer id) throws SQLException, ClassNotFoundException {
+        TowTruckService.deleteTowTruck(id);
+    }
+
     //TRAVEL BUS
 
     @RequestMapping(value = "add-Travel", method = RequestMethod.POST)
@@ -204,6 +226,11 @@ public class MainController {
     @RequestMapping(value = "get-all-Travel-BUS", method = RequestMethod.GET)
     public List<Vehicle> getAllTravelBus() {
         return vehicleService.getListOfVehicles(VehicleType.BUS, BusTypes.TRAVEL_BUS.toString());
+    }
+
+    @RequestMapping(value = "delete-Travel", method = RequestMethod.POST)
+    public void deleteTravelBus( @RequestParam(value = "idNumber") Integer id) throws SQLException, ClassNotFoundException {
+        TravelBusService.deleteTravelBus(id);
     }
 
     //Parking

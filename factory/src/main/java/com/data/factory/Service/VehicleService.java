@@ -1,12 +1,10 @@
 package com.data.factory.Service;
 
 import com.data.factory.Model.*;
-import com.data.factory.Repository.VehicleRepository;
 import com.data.factory.enums.BusTypes;
 import com.data.factory.enums.CarTypes;
 import com.data.factory.enums.TruckTypes;
 import com.data.factory.enums.VehicleType;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,18 +15,9 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class VehicleService {
 
-    private static VehicleRepository VehicleRepository;
-
-    @Autowired
-    public VehicleService(VehicleRepository VehicleRepository) {
-        VehicleService.VehicleRepository = VehicleRepository;
-    }
-
     public List<Vehicle> getListOfVehicles(VehicleType vehicleType, String subType){
 
-        Parking parking = new Parking();
-
-        List<Vehicle> listaSvihVozilaIzBaze = parking.getListOfAllVehiclesAddedToDataBase();
+        List<Vehicle> listaSvihVozilaIzBaze = Parking.getListOfAllVehiclesAddedToDataBase();
         List<Vehicle> listaVozila = new ArrayList<>();
         List<Vehicle> vehicleStream = listaSvihVozilaIzBaze.stream()
                 .filter(vehicle -> vehicle.getVehicleType().equals(vehicleType)).collect(toList());
@@ -59,13 +48,11 @@ public class VehicleService {
 
     public List<Vehicle> getListOfVehiclesParent(String parentName){
 
-        Parking parking = new Parking();
+        return Parking.getListOfAllVehiclesAddedToDataBase()
+                .stream()
+                .filter(vehicle -> vehicle.getVehicleType().toString().equals(parentName))
+                .collect(toList());
 
-        List<Vehicle> listaSvihVozilaIzBaze = parking.getListOfAllVehiclesAddedToDataBase();
-        List<Vehicle> vehicleStream = listaSvihVozilaIzBaze.stream()
-                .filter(vehicle -> vehicle.getVehicleType().toString().equals(parentName)).collect(toList());
-
-        return vehicleStream;
     }
 
 

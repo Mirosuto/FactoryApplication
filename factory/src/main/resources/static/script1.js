@@ -13,6 +13,21 @@ app.controller('mainController', function ($scope, $location) {
     };
 
     $scope.getAllVehicles = function () {
+        $.ajax({
+            url: "/vehicle/get-all-" + $scope.vozilo.name,
+            method: "GET",
+            success: function (data) {
+                $scope.listOfVehicles = data;
+                $scope.$apply();
+                console.log(data)},
+            error(xhr) {
+                console.log(xhr);
+                alert("failed to retrieve data!");
+            }
+        });
+    };
+
+    $scope.getAllVehiclesWithParentName = function () {
         $.ajax({  //                        "City"                      "BUS"
             url: "/vehicle/get-all-" + $scope.vozilo.name + "-" + $scope.vozila.name,
             method: "GET",

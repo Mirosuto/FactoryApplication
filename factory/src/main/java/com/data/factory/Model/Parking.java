@@ -25,7 +25,7 @@ public class Parking {
     @Column
     private double visina;
 
-    @OneToMany(mappedBy = "parking", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parking", orphanRemoval = true, fetch = FetchType.EAGER)
     public List<Vehicle> vehicleList = new ArrayList<>();
 
     @Transient
